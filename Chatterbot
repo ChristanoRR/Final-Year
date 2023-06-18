@@ -1,0 +1,33 @@
+from chatterbot import ChatBot
+from chatterbot.trainers import ChatterBotCorpusTrainer
+
+# Create a ChatBot instance
+bot = ChatBot('MyChatBot')
+
+# Create a new trainer for the ChatBot
+trainer = ChatterBotCorpusTrainer(bot)
+
+# Train the ChatBot using the English corpus data
+trainer.train('chatterbot.corpus.english')
+
+def get_bot_response(user_input):
+    # Get a response from the chatbot
+    bot_response = bot.get_response(user_input)
+    return str(bot_response)
+
+def main():
+    print("Welcome to MyChatBot!")
+
+    while True:
+        user_input = input("User: ")
+
+        if user_input.lower() == 'quit':
+            break
+
+        bot_response = get_bot_response(user_input)
+        print("ChatBot:", bot_response)
+
+    print("Thank you for using MyChatBot!")
+
+if __name__ == '__main__':
+    main()
